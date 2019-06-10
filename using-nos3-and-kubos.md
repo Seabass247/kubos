@@ -1,17 +1,17 @@
 # Using NOS3 & KubOS Together
 
 ## Setting up the NOS3 vm
-1. Pull NOS3 from the NOS3 repo (temporarily the kubos integration NOS3 fork at https://github.com/Seabass247/nos3/tree/kubos-provisioning, until the August NOS3 release is out)
-2. cd `./support`, edit Vagrantfile
-3. change `loi` to 'K'; uncomment the associated line
-4. run `vagrant up`
+1. Pull NOS3 from the NOS3 repo (Get the kubos provisioning NOS3 fork at https://github.com/Seabass247/nos3/tree/kubos-provisioning, until the August NOS3 release is out)
+2. cd `./support`, open Vagrantfile
+3. choose Level of Installation: uncomment the line `loi = 'K' # Kubos`
+4. run `vagrant up` in `./support`
 5. once finished, do `vagrant reload`
 6. The vm should launch, log in with password: `nos3123!`
 
 ## Using KubOS in NOS3
 The KubOS repo will be installed to `~/kubos`
 
-You can specify a fork of KubOS by changing the path `KUBOS` in scripts `kubos-nos3-build` and `kubos-nos3-run` on the desktop.  Run `kubos-nos3-build` script from the desktop.  This builds targets for all NOS3 sims and the 3 KubOS hardware services with feature nos3.  It may be necessary to specify the NOS3 KubOS fork as long as the NOS Engine HALs have yet to be merged into KubOS master (As of writing, the fork lives at https://github.com/Seabass247/kubos/tree/nos3-demo)
+You can specify a fork of KubOS by changing the path `KUBOS` in scripts `kubos-nos3-build` and `kubos-nos3-run` on the desktop.  Run `kubos-nos3-build` script from the desktop.  This builds targets for all NOS3 sims and the 3 KubOS hardware services with feature nos3.  It will be necessary to specify the NOS3 KubOS fork as the NOS Engine HALs aren't yet merged into master (Get the working demo version at https://github.com/Seabass247/kubos/tree/nos3-demo)
 
 ### Novatel OEM6 GPS
 The Novatel OEM6 GPS is the only hardware model that is currently supported.  To issue queries and mutations against the sim, go to "localhost:8123" from a web browser in the vm.  To verify everything is working, issue a query to enable bestxyz log messages.  You should see the sim sending log messages from the `[DEBUG]` prints in the GPS sim terminal tab.  If all goes well, querying `lockinfo` should return good position and velocity data from the sim.
